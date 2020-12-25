@@ -22,8 +22,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->unsignedBigInteger('used_space')->nullable();
-            $table->unsignedBigInteger('file_count')->nullable();
+            $table->unsignedBigInteger('used_space')->nullable()->default(0);
+            $table->unsignedBigInteger('file_count')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -56,6 +56,7 @@ class FileController extends Controller
                 
                 
                 $img_path=str_replace("user_files".'/'.$user_id.'/',"",$img_path);
+                $this->user_data($user);
             return $img_path;
 
 
@@ -151,9 +152,9 @@ class FileController extends Controller
 
 
 
-    public function user_data()
+    public function user_data($user)
     {
-        if(null===auth()->user())
+        if(null==$user)
         return new Response('"message":"please provide correct Bearer Token"',401,$http_response_header=['Content-Type'=>'application/json']);
         else
         {
@@ -165,6 +166,10 @@ class FileController extends Controller
             $folder_size=$folder_size+Storage::size($file);
             $number_of_files++;
         }
+        $changes=["used_space"=>$folder_size,
+        "file_count"=>$number_of_files];
+        $user->update($changes);
+        return $changes;
         }
         
     }
@@ -248,6 +253,7 @@ class FileController extends Controller
                 Storage::deleteDirectory('user_files/'.$user->id.'/'.$request); 
                 else
                 Storage::delete('user_files/'.$user->id.'/'.$request);
+                $this->user_data($user);
                 return new Response('{"message":"Resource was succesfully deleted"}',200,$http_response_header=['Content-Type' => 'application/json']) ;
             
             
