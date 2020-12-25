@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('files/{url}',"App\Http\Controllers\FileController@showFolder")->where('url', '.*')->middleware('auth');
+Route::get('files',"App\Http\Controllers\FileController@showFolder")->middleware('auth');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

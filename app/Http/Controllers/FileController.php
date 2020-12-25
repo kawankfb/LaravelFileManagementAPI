@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -20,7 +21,7 @@ class FileController extends Controller
         else
         {
         $user= User::find(auth()->user()->id);
-        
+
         $request->validate([
             'directory'=>'required',
             'file'=>'file|required|max:3999',
@@ -29,41 +30,41 @@ class FileController extends Controller
         $user_id=$user->id;
         $pathToStoreFile='/user_files/'.$user_id;
         $directory=$request->directory;
-        
+
         if(str_ends_with($directory,"/"))
         $directory=substr($directory,0,strlen($directory)-1);
         $directory=str_replace(".","",$directory);
-        if(strpos($directory,"\\")===false 
-        && strpos($directory,":")===false 
-        && strpos($directory,"?")===false 
-        && strpos($directory,"<")===false 
-        && strpos($directory,">")===false 
-        && strpos($directory,"|")===false 
-        && strpos($directory,"*")===false 
+        if(strpos($directory,"\\")===false
+        && strpos($directory,":")===false
+        && strpos($directory,"?")===false
+        && strpos($directory,"<")===false
+        && strpos($directory,">")===false
+        && strpos($directory,"|")===false
+        && strpos($directory,"*")===false
         && strpos($directory,'"')===false)
         $pathToStoreFile=$pathToStoreFile.'/'.$directory;
         else
         return new Response('{"error":"directory parameter should not contain the following letters :{* ," ,\\ ,| ,< ,> ,? ,:}."}',400,$http_response_header=['Content-Type'=>'application/json']);
         if(!Storage::exists($pathToStoreFile))
         Storage::disk('local')->makeDirectory("/user_files".'/'.$user_id);
-        
+
                 $extension=$request->file('file')->getClientOriginalExtension();
                 $file_name=$request->name;
                 if($extension=="")
                 $img_path= $request->file('file')->storeAs($pathToStoreFile,$file_name);
                 else
                 $img_path= $request->file('file')->storeAs($pathToStoreFile,$file_name.'.'.$extension);
-                
-                
+
+
                 $img_path=str_replace("user_files".'/'.$user_id.'/',"",$img_path);
                 $this->user_data($user);
             return $img_path;
 
 
         }
-    
 
-        
+
+
     }
 
     public function index(){
@@ -79,13 +80,13 @@ class FileController extends Controller
              $folder_address='user_files/'.$user->id;
              return $this->get_folder_paths("",$user);
          }
-            
+
             else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
 
         }
-    
 
-        
+
+
     }
 
 
@@ -126,7 +127,7 @@ class FileController extends Controller
                        $sub_paths=$sub_paths.'"'.$folder_name.'":'.'"'.$folder.'"';
                        else
                        $sub_paths=$sub_paths.'"'.$folder_name.'":'.'"'.$folder.'", ';
-   
+
                    }
                    $sub_paths=$sub_paths.'],"files":[';
                        $i=0;
@@ -140,13 +141,13 @@ class FileController extends Controller
                    }
                    $sub_paths=$sub_paths.']}';
                     return new Response($sub_paths,200,$http_response_header=['Content-Type'=>'application/json']);
-               
+
            }
                else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
-   
+
            }
         }
-    
+
 
 
 
@@ -171,7 +172,7 @@ class FileController extends Controller
         $user->update($changes);
         return $changes;
         }
-        
+
     }
 
     public function getByFolder(Request $request){
@@ -222,22 +223,22 @@ class FileController extends Controller
                     $sub=$sub.substr($subfile,$range_starting_point,$range_length);
 
                 }
-                
-                
-                
+
+
+
                 return new Response($sub,206,$http_response_header=['Content-Type' => 'application/octet-stream','Content-Length' =>$size ]) ;
             }
-            else   
+            else
                 return new Response($file,200,$http_response_header=['Content-Type' => 'application/octet-stream', 'Content-Length' => Storage::size($file_address)]) ;
-            
-            
+
+
         }
             else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
 
         }
-    
 
-        
+
+
     }
 
     public function destroy($request){
@@ -250,17 +251,30 @@ class FileController extends Controller
         {
 
             if(sizeof(Storage::directories('user_files/'.$user->id.'/'.$request))>0)
-                Storage::deleteDirectory('user_files/'.$user->id.'/'.$request); 
+                Storage::deleteDirectory('user_files/'.$user->id.'/'.$request);
                 else
                 Storage::delete('user_files/'.$user->id.'/'.$request);
                 $this->user_data($user);
                 return new Response('{"message":"Resource was succesfully deleted"}',200,$http_response_header=['Content-Type' => 'application/json']) ;
-            
-            
+
+
         }
             else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
 
         }
+    }
+
+    public function showFolder(Request $request,$url=null)
+    {
+        $baseUrl='user_files/'.Auth::user()->id.'/';
+        if (!Storage::exists($baseUrl))
+            Storage::makeDirectory($baseUrl);
+        $directories= Storage::directories($baseUrl.$url);
+        $files=Storage::files($baseUrl.$url);
+        return view('files',[
+            'files'         => $files,
+            'directories'   =>$directories
+        ]);
     }
 
 }
