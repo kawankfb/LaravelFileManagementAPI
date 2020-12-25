@@ -65,6 +65,92 @@ class FileController extends Controller
         
     }
 
+    public function index(){
+         //
+         if(null===auth()->user())
+         return new Response('"message":"please provide correct Bearer Token"',401,$http_response_header=['Content-Type'=>'application/json']);
+         else
+         {
+         $user= User::find(auth()->user()->id);
+         if(Storage::exists('user_files/'.$user->id.'/'))
+         {
+
+             $folder_address='user_files/'.$user->id;
+             return $this->get_folder_paths("",$user);
+         }
+            
+            else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
+
+        }
+    
+
+        
+    }
+
+
+
+
+    public function get_folder_paths($path,$auth=null){
+        if($auth==null){
+            return new Response('"message":"please provide correct Bearer Token"',401,$http_response_header=['Content-Type'=>'application/json']);
+        }
+        else
+        {
+            $user=$auth;
+            if(Storage::exists('user_files/'.$user->id.'/'.$path))
+            {
+                $folder_address='user_files/'.$user->id.'/'.$path;
+                    $folders=Storage::directories($folder_address);
+                   $files=Storage::files($folder_address);
+                   $i=0;
+                   foreach($files as $file)
+                   {
+                       $files[$i++]=str_replace("user_files/".$user->id,"/api/files",$file);
+                   }
+                   $i=0;
+                   foreach($folders as $folder)
+                   {
+                       $folders[$i++]=str_replace("user_files/".$user->id,"/api/files",$folder);
+                   }
+                   $sub_paths='{'.'"folders":[';
+                       $i=0;
+                       $relative_path=str_replace("user_files/".$user->id,"/api/files",$folder_address);
+                       if(str_ends_with($relative_path,'/'))
+                       $relative_path=substr($relative_path,0,strlen($relative_path)-1);
+                       //return $relative_path;
+                   foreach($folders as $folder){
+                       $folder_name=str_replace($relative_path.'/',"",$folder);
+                       $i++;
+                       if(sizeof($folders)==$i)
+                       $sub_paths=$sub_paths.'"'.$folder_name.'":'.'"'.$folder.'"';
+                       else
+                       $sub_paths=$sub_paths.'"'.$folder_name.'":'.'"'.$folder.'", ';
+   
+                   }
+                   $sub_paths=$sub_paths.'],"files":[';
+                       $i=0;
+                   foreach($files as $file){
+                       $file_name=str_replace($relative_path.'/',"",$file);
+                       $i++;
+                       if(sizeof($files)==$i)
+                       $sub_paths=$sub_paths.'"'.$file_name.'":'.'"'.$file.'"';
+                       else
+                       $sub_paths=$sub_paths.'"'.$file_name.'":'.'"'.$file.'", ';
+                   }
+                   $sub_paths=$sub_paths.']}';
+                    return new Response($sub_paths,200,$http_response_header=['Content-Type'=>'application/json']);
+               
+           }
+               else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
+   
+           }
+        }
+    
+
+
+
+
+
     public function user_data()
     {
         if(null===auth()->user())
@@ -92,6 +178,7 @@ class FileController extends Controller
     }
 
 
+
     public function show($file_name,$auth=null)
     {
         //
@@ -106,6 +193,10 @@ class FileController extends Controller
         $user=$auth;
         if(Storage::exists('user_files/'.$user->id.'/'.$file_name))
         {
+
+            if(sizeof(Storage::directories('user_files/'.$user->id.'/'.$file_name))>0)
+            return $this->get_folder_paths($file_name,$user);
+
             $file_address='user_files/'.$user->id.'/'.$file_name;
                 $file=Storage::get($file_address);
 
@@ -143,4 +234,27 @@ class FileController extends Controller
 
         
     }
+
+    public function destroy($request){
+        if(null===auth()->user())
+        return new Response('"message":"please provide correct Bearer Token"',401,$http_response_header=['Content-Type'=>'application/json']);
+        else
+        {
+        $user=auth()->user();
+        if(Storage::exists('user_files/'.$user->id.'/'.$request))
+        {
+
+            if(sizeof(Storage::directories('user_files/'.$user->id.'/'.$request))>0)
+                Storage::deleteDirectory('user_files/'.$user->id.'/'.$request); 
+                else
+                Storage::delete('user_files/'.$user->id.'/'.$request);
+                return new Response('{"message":"Resource was succesfully deleted"}',200,$http_response_header=['Content-Type' => 'application/json']) ;
+            
+            
+        }
+            else return new Response('{"message":"no such file exists"}',404,$http_response_header=['Content-Type'=>'application/json']);
+
+        }
+    }
+
 }
