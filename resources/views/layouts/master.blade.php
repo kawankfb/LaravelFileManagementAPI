@@ -23,17 +23,17 @@
     <!--begin::Layout Themes(used by all pages)-->
     @yield('style')
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
-<body direction="rtl" dir="rtl" id="kt_body" style="background-image: url(assets/media/bg/bg-10.jpg); direction: rtl" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
+<body direction="rtl" dir="rtl" id="kt_body" style="background-image: url({{asset('assets/media/bg/bg-10.jpg')}}); direction: rtl" class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading">
 <!--begin::Main-->
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile">
     <!--begin::Logo-->
     <a href="index.html">
-        <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+        <img alt="Logo" src="{{asset("assets/media/logos/logo-letter-1.png")}}" class="logo-default max-h-30px" />
     </a>
     <!--end::Logo-->
     <!--begin::Toolbar-->

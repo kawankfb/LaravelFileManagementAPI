@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -21,15 +24,27 @@
   <component name="ChangeListManager">
     <list default="true" id="b1212c0d-003d-4e7d-8466-97701f0872c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/media/svg/files/javascript.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/files.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/files.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -161,11 +176,23 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/user_files/2/fardin/mm" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2\fardin\mm" />
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2\fardin" />
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\1" />
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -181,7 +208,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608908164576</updated>
-      <workItem from="1608908166272" duration="1744000" />
+      <workItem from="1608908166272" duration="7099000" />
+      <workItem from="1609085855062" duration="1925000" />
+      <workItem from="1609239024079" duration="649000" />
+      <workItem from="1609243102206" duration="643000" />
+      <workItem from="1609330639512" duration="21345000" />
     </task>
     <servers />
   </component>
@@ -198,15 +229,32 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609349678080">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1609349678080" />
     <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608908334791">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608908334791" />
+    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1609349685830">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1609349685830" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1608910694562">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608910694562" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1609362639680">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1609362639680" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1609362109368">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1609362109368" />
   </component>
 </project>

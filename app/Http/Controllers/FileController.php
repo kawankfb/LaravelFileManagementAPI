@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -88,8 +89,6 @@ class FileController extends Controller
 
 
     }
-
-
 
 
     public function get_folder_paths($path,$auth=null){
@@ -264,16 +263,67 @@ class FileController extends Controller
         }
     }
 
+    private function chooseImgPath($type){
+        $white_list=['mp4','doc','css','csv','pdf','folder', 'html','jpg','js','zip','xml'];
+
+        $result=asset('assets/media/svg/files/.svg');
+        foreach ($white_list as $item){
+            if ($item ==$type){
+                $result=asset('assets/media/svg/files/'.$type.'.svg');
+            }
+        }
+        return $result;
+
+    }
+    private function getimgpath($path)
+    {
+        $result='';
+        if(is_dir('../storage/app/'.$path)){
+            $result=$this->chooseImgPath('folder');
+
+            return $result;
+        }
+        else
+        {
+            $tmp='';
+            $temp=pathinfo($path);
+
+            if(isset($temp['extension'])){
+                $tmp=$temp['extension'];
+            }
+            $result=$this->chooseImgPath($tmp);
+            return $result;
+        }
+    }
+
     public function showFolder(Request $request,$url=null)
     {
+
         $baseUrl='user_files/'.Auth::user()->id.'/';
         if (!Storage::exists($baseUrl))
             Storage::makeDirectory($baseUrl);
         $directories= Storage::directories($baseUrl.$url);
         $files=Storage::files($baseUrl.$url);
-        return view('files',[
-            'files'         => $files,
-            'directories'   =>$directories
+        $final=array_merge($directories,$files);
+        $items=[];
+       // dd($request->pathInfo);
+
+        foreach ($final as $item) {
+            $basename=pathinfo($item)['basename'];
+
+
+            $items[]=[
+                'svg_path'=>$this->getimgpath($item),
+                'url'=>$request->getPathInfo().'/'.$basename,
+                //'url'=>str_replace('files','',$request->path()).'/'.str_replace($baseUrl,'',$item),
+                'basename'=>$basename
+            ];
+
+        }
+
+
+        return view('files' , [
+            'final' => $items
         ]);
     }
 

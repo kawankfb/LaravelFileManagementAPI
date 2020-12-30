@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('files');
 });
 
 Route::get('files/{url}',"App\Http\Controllers\FileController@showFolder")->where('url', '.*')->middleware('auth');
