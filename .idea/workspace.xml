@@ -9,25 +9,21 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1212c0d-003d-4e7d-8466-97701f0872c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/media/svg/files/javascript.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/files.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/files.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,19 +175,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/user_files/2/fardin/mm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\1" />
+      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2\fardin\mm" />
       <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2\fardin" />
       <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\2" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files\1" />
-      <recent name="C:\Users\fmoha\Desktop\workspace\web\laravel\fileMnagment\LaravelFileManagementAPI\storage\app\user_files" />
     </key>
   </component>
   <component name="RunManager">
@@ -213,6 +209,12 @@
       <workItem from="1609239024079" duration="649000" />
       <workItem from="1609243102206" duration="643000" />
       <workItem from="1609330639512" duration="21345000" />
+      <workItem from="1610292709753" duration="12041000" />
+      <workItem from="1610438868307" duration="6605000" />
+      <workItem from="1611166980952" duration="1736000" />
+      <workItem from="1612106145085" duration="2064000" />
+      <workItem from="1612130329812" duration="4691000" />
+      <workItem from="1612223514937" duration="8593000" />
     </task>
     <servers />
   </component>
@@ -232,14 +234,30 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609349678080">
+    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1610292756012">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1609349678080" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1608908334791">
+    <state x="535" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1610292756012" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610304255755">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1608908334791" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1610304255755" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1610463089673">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1610463089673" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1610463089673">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1610463089673" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1610463089673">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1610463089673" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1610463089673">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1610463089673" />
     <state x="604" y="341" key="NewPhpFileDialog" timestamp="1609349685830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -248,13 +266,13 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1608910694562" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1609362639680">
+    <state x="425" y="189" key="run.anything.popup" timestamp="1612228149675">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1609362639680" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1609362109368">
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1612228149675" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1610308475743">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1609362109368" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1610308475743" />
   </component>
 </project>

@@ -6,9 +6,9 @@
             <div class="d-flex align-items-stretch mr-3">
                 <!--begin::Header Logo-->
                 <div class="header-logo">
-                    <a href="index.html">
-                        <img alt="Logo" src="assets/media/logos/logo-letter-9.png" class="logo-default max-h-40px" />
-                        <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-sticky max-h-40px" />
+                    <a href="/">
+                        <img alt="Logo" src="{{asset('assets/media/logos/logo-letter-9.png')}}" class="logo-default max-h-40px" />
+                        <img alt="Logo" src="{{asset('assets/media/logos/logo-letter-1.png')}}" class="logo-sticky max-h-40px" />
                     </a>
                 </div>
                 <!--end::Header Logo-->
@@ -19,24 +19,24 @@
                         <!--begin::Header Nav-->
                         <ul class="menu-nav">
                             <li class="menu-item  menu-item-submenu menu-item-rel " data-menu-toggle="click" aria-haspopup="true">
-                                <a href="javascript:;" class="menu-link">
+                                <a href="/" class="menu-link">
                                     <span class="menu-text"><b>خانه</b></span>
                                     <i class="menu-arrow"></i>
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
-                                <a href="/drive" class="menu-link">
+                                <a href="/files" class="menu-link">
                                     <span class="menu-text "><b>درایو</b></span>
                                 </a>
                             </li>
 
                             <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
-                                <a href="javascript:;" class="menu-link">
+                                <a href="#" class="menu-link">
                                     <span class="menu-text"><b>درباره ما</b></span>
                                 </a>
                             </li>
                             <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
-                                <a href="javascript:;" class="menu-link">
+                                <a href="#" class="menu-link">
                                     <span class="menu-text "><b>ارتباط با ما</b></span>
                                 </a>
                             </li>
@@ -110,12 +110,13 @@
 
 
                 <!--begin::User-->
+
                 <div class="dropdown">
                     <!--begin::Toggle-->
                     <div class="topbar-item">
                         <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto" id="kt_quick_user_toggle">
                             <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
-                            <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">Sean</span>
+                            <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{Auth::user()->name}}</span>
                             <span class="symbol symbol-35">
 												<span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">S</span>
 											</span>

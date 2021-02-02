@@ -262,7 +262,6 @@ class FileController extends Controller
 
         }
     }
-
     private function chooseImgPath($type){
         $white_list=['mp4','doc','css','csv','pdf','folder', 'html','jpg','js','zip','xml'];
 
@@ -275,7 +274,7 @@ class FileController extends Controller
         return $result;
 
     }
-    private function getimgpath($path)
+    private function getImgPath($path)
     {
         $result='';
         if(is_dir('../storage/app/'.$path)){
@@ -306,14 +305,14 @@ class FileController extends Controller
         $files=Storage::files($baseUrl.$url);
         $final=array_merge($directories,$files);
         $items=[];
-       // dd($request->pathInfo);
+        // dd($request->pathInfo);
 
         foreach ($final as $item) {
             $basename=pathinfo($item)['basename'];
 
 
             $items[]=[
-                'svg_path'=>$this->getimgpath($item),
+                'svg_path'=>$this->getImgPath($item),
                 'url'=>$request->getPathInfo().'/'.$basename,
                 //'url'=>str_replace('files','',$request->path()).'/'.str_replace($baseUrl,'',$item),
                 'basename'=>$basename
