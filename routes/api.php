@@ -61,6 +61,7 @@ Route::post('/sanctum/token', function (Request $request) {
 Route::get('files','App\Http\Controllers\FileController@index')->middleware('auth:sanctum');
 Route::get('files/{url}',"App\Http\Controllers\FileController@getByFolder")->where('url', '.*')->middleware('auth:sanctum');
 
+
 Route::post('files','App\Http\Controllers\FileController@store')->middleware('auth:sanctum');
 Route::post('files/{url}',"App\Http\Controllers\FileController@store")->where('url', '.*')->middleware('auth:sanctum');
 
