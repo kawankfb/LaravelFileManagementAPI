@@ -17,7 +17,7 @@ class FileManagerController extends Controller
     private function chooseImgPath($type){
         $white_list=['mp4','doc','css','csv','pdf','folder', 'html','jpg','js','zip','xml'];
 
-        $result=asset('assets/media/svg/files/.svg');
+        $result=asset('assets/media/svg/files/a.svg');
         foreach ($white_list as $item){
             if ($item ==$type){
                 $result=asset('assets/media/svg/files/'.$type.'.svg');

@@ -58,6 +58,12 @@ Route::post('/sanctum/token', function (Request $request) {
     return $user->createToken($request->device_name)->plainTextToken;
 })->name("token_generator");
 
-Route::apiResource('files','App\Http\Controllers\FileController')->middleware('auth:sanctum');
+Route::get('files','App\Http\Controllers\FileController@index')->middleware('auth:sanctum');
 Route::get('files/{url}',"App\Http\Controllers\FileController@getByFolder")->where('url', '.*')->middleware('auth:sanctum');
+
+Route::post('files','App\Http\Controllers\FileController@store')->middleware('auth:sanctum');
+Route::post('files/{url}',"App\Http\Controllers\FileController@store")->where('url', '.*')->middleware('auth:sanctum');
+
+
+Route::delete('files','App\Http\Controllers\FileController@destroy')->middleware('auth:sanctum');
 Route::delete('files/{url}',"App\Http\Controllers\FileController@destroy")->where('url', '.*')->middleware('auth:sanctum');

@@ -25,7 +25,7 @@ class FileController extends Controller
 
         $request->validate([
             'directory'=>'required',
-            'file'=>'file|required|max:3999',
+            'file'=>'file|required|max:20480',
             'name'=>'required'
         ]);
         $user_id=$user->id;
@@ -59,12 +59,10 @@ class FileController extends Controller
 
                 $img_path=str_replace("user_files".'/'.$user_id.'/',"",$img_path);
                 $this->user_data($user);
-            return $img_path;
+            return new Response('"message":"Successfully created "',201,$http_response_header=['Content-Type'=>'application/json']);
 
 
         }
-
-
 
     }
 
@@ -89,7 +87,6 @@ class FileController extends Controller
 
 
     }
-
 
     public function get_folder_paths($path,$auth=null){
         if($auth==null){
@@ -149,9 +146,6 @@ class FileController extends Controller
 
 
 
-
-
-
     public function user_data($user)
     {
         if(null==$user)
@@ -174,10 +168,8 @@ class FileController extends Controller
 
     }
 
-    public function getByFolder(Request $request){
-        $url = $request->path();
-        $url=substr($url,10);
-        $directories=explode('/',$url);
+    public function getByFolder($url=null){
+
         $auth=auth()->user();
         return $this->show($url,$auth);
     }
@@ -199,7 +191,7 @@ class FileController extends Controller
         if(Storage::exists('user_files/'.$user->id.'/'.$file_name))
         {
 
-            if(sizeof(Storage::directories('user_files/'.$user->id.'/'.$file_name))>0)
+            if($this->isDirectory('user_files/'.$user->id.'/'.$file_name))
             return $this->get_folder_paths($file_name,$user);
 
             $file_address='user_files/'.$user->id.'/'.$file_name;
@@ -249,12 +241,12 @@ class FileController extends Controller
         if(Storage::exists('user_files/'.$user->id.'/'.$request))
         {
 
-            if(sizeof(Storage::directories('user_files/'.$user->id.'/'.$request))>0)
+            if($this->isDirectory('user_files/'.$user->id.'/'.$request))
                 Storage::deleteDirectory('user_files/'.$user->id.'/'.$request);
                 else
                 Storage::delete('user_files/'.$user->id.'/'.$request);
                 $this->user_data($user);
-                return new Response('{"message":"Resource was succesfully deleted"}',200,$http_response_header=['Content-Type' => 'application/json']) ;
+                return new Response('{"message":"Resource was successfully deleted"}',200,$http_response_header=['Content-Type' => 'application/json']) ;
 
 
         }
@@ -262,68 +254,11 @@ class FileController extends Controller
 
         }
     }
-    private function chooseImgPath($type){
-        $white_list=['mp4','doc','css','csv','pdf','folder', 'html','jpg','js','zip','xml'];
 
-        $result=asset('assets/media/svg/files/.svg');
-        foreach ($white_list as $item){
-            if ($item ==$type){
-                $result=asset('assets/media/svg/files/'.$type.'.svg');
-            }
-        }
-        return $result;
 
-    }
-    private function getImgPath($path)
-    {
-        $result='';
-        if(is_dir('../storage/app/'.$path)){
-            $result=$this->chooseImgPath('folder');
-
-            return $result;
-        }
-        else
-        {
-            $tmp='';
-            $temp=pathinfo($path);
-
-            if(isset($temp['extension'])){
-                $tmp=$temp['extension'];
-            }
-            $result=$this->chooseImgPath($tmp);
-            return $result;
-        }
+    private function isDirectory($path){
+        return is_dir('../storage/app/'.$path);
     }
 
-    public function showFolder(Request $request,$url=null)
-    {
-
-        $baseUrl='user_files/'.Auth::user()->id.'/';
-        if (!Storage::exists($baseUrl))
-            Storage::makeDirectory($baseUrl);
-        $directories= Storage::directories($baseUrl.$url);
-        $files=Storage::files($baseUrl.$url);
-        $final=array_merge($directories,$files);
-        $items=[];
-        // dd($request->pathInfo);
-
-        foreach ($final as $item) {
-            $basename=pathinfo($item)['basename'];
-
-
-            $items[]=[
-                'svg_path'=>$this->getImgPath($item),
-                'url'=>$request->getPathInfo().'/'.$basename,
-                //'url'=>str_replace('files','',$request->path()).'/'.str_replace($baseUrl,'',$item),
-                'basename'=>$basename
-            ];
-
-        }
-
-
-        return view('files' , [
-            'final' => $items
-        ]);
-    }
 
 }
